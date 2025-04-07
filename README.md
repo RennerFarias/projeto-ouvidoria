@@ -1,52 +1,69 @@
-# Ouvidoria com SQL
+# Sistema de Ouvidoria
 
-Este projeto é uma aplicação de ouvidoria desenvolvida com foco no uso de SQL para gerenciar e armazenar dados. Ele permite o registro, consulta e gerenciamento de manifestações de usuários, como reclamações, sugestões e elogios.
+## 📝 Descrição
+Sistema de gerenciamento de manifestações (reclamações, elogios e sugestões) desenvolvido em Python com MySQL.
 
-## Funcionalidades
+## 🛠️ Pré-requisitos
+- Python 3.x
+- MySQL Server
+- Biblioteca `mysql-connector-python` (instalável via `pip install mysql-connector-python`)
 
-- Registro de manifestações (reclamações, sugestões, elogios).
-- Consulta de manifestações por tipo ou ID.
-- Atualização e exclusão de registros.
-- Relatórios e estatísticas baseados nos dados armazenados.
+## 🗄️ Configuração do Banco de Dados
 
-## Tecnologias Utilizadas
+### 1. Criar o banco de dados e tabela
+Execute os seguintes comandos no MySQL:
 
-- **Linguagem de Programação**: [Especifique a linguagem usada, ex.: Python, Java, etc.]
-- **Banco de Dados**: SQL (MySQL, PostgreSQL, ou outro).
-- **Ferramentas Adicionais**: [Especifique outras ferramentas ou frameworks, se aplicável].
+```sql
+-- Cria o banco de dados
+CREATE DATABASE IF NOT EXISTS sistema_manifestacoes;
 
-## Como Executar
+-- Seleciona o banco
+USE sistema_manifestacoes;
 
-1. Clone este repositório:
-    ```bash
-    git clone https://github.com/seu-usuario/ouvidoria-com-sql.git
-    ```
-2. Configure o banco de dados:
-    - Crie o banco de dados utilizando o script `schema.sql` fornecido.
-    - Atualize as credenciais de conexão no arquivo de configuração.
+-- Cria a tabela básica
+CREATE TABLE IF NOT EXISTS manifestacoes (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(20) NOT NULL,
+    descricao TEXT NOT NULL
+);
 
-3. Execute a aplicação:
-    ```bash
-    [Comando para iniciar a aplicação]
-    ```
+-- Confirmação
+SELECT 'Tabela criada com sucesso! Pronto para usar.' AS Mensagem;
+```
 
-## Estrutura do Projeto
+### 2. Configurar acesso
+Edite no arquivo `ouvidoria.py` as credenciais de conexão na função `conectar_banco()`:
+```python
+conexao = criarConexao("localhost", "root", "12345", "sistema_manifestacoes")
+```
+Substitua pelos seus dados de usuário e senha do MySQL.
 
-- `/scripts`: Scripts SQL para criação e manipulação do banco de dados.
-- `/src`: Código-fonte da aplicação.
-- `/docs`: Documentação adicional.
+## 🚀 Como Executar
+1. Clone o repositório ou copie os arquivos
+2. Instale as dependências:
+   ```bash
+   pip install mysql-connector-python
+   ```
+3. Execute o programa:
+   ```bash
+   python ouvidoria.py
+   ```
 
-## Contribuição
+## 🎯 Funcionalidades
+- [1] Listar todas as manifestações
+- [2] Listar manifestações por tipo (Reclamação/Elogio/Sugestão)
+- [3] Criar nova manifestação
+- [4] Exibir quantidade de manifestações
+- [5] Pesquisar manifestação por código
+- [6] Excluir manifestação por código
+- [7] Sair do sistema
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+## 🔄 Resetar Banco de Dados
+Para limpar todos os registros (códigos voltam a contar do 1):
+```sql
+TRUNCATE TABLE manifestacoes;
+```
 
-## Licença
-
-Este projeto está licenciado sob a [Licença que você escolher]. Consulte o arquivo `LICENSE` para mais detalhes.
-
-## Contato
-
-Para dúvidas ou sugestões, entre em contato:
-- **Email**: [seu-email@example.com]
-- **GitHub**: [https://github.com/seu-usuario]
-- **LinkedIn**: [Seu LinkedIn, se aplicável]
+## 📹 Vídeo Explicativo
+Assista ao tutorial no YouTube:  
+[Explicação do Sistema de Ouvidoria](https://youtu.be/UrvyLwzOOmU)
