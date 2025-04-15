@@ -135,5 +135,5 @@ def main():
 if __name__ == "__main__":
     main()
 
-#para resetar o banco de dados, use o seguinte comando: TRUNCATE TABLE manifestacoes;3
+#para resetar o banco de dados, use o seguinte comando: TRUNCATE TABLE manifestacoes;
 #link do video explicando o ouvidoria.py: https://youtu.be/UrvyLwzOOmU
